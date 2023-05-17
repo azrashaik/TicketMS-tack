@@ -1,0 +1,101 @@
+select {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  background-color: #fff;
+  width: 200px;
+  margin-right: 16px;
+}
+.search{
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.searchAndFilter {
+  display: flex;
+  align-items: center;
+}
+
+
+
+select:hover, select:focus {
+  border-color: #999;
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+option {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+.searchBar{
+  background-color: #fff;
+
+
+}
+.filter{
+  margin-left: 10px;
+}
+
+.B1{
+  padding: 10px;
+  margin-left: 500px;
+  border-radius: 8px;
+  background-color: rgb(61, 122, 85);
+
+}
+.B2{
+  padding: 8px;
+  border-radius: 8px;
+  background-color: rgb(61, 122, 85);
+}
+
+.btn{
+  margin: 2px;
+}
+.B3{
+  margin-left: 10px;
+  border-radius: 8px;
+  background-color: rgb(61, 122, 85);
+}
+.srcbtn{
+  padding: 7px;
+  border-radius: 5px;
+  background-color: rgb(32, 135, 231);
+  color: white;
+  border: none;
+  
+}
+
+.back{
+  text-decoration: none;
+  color: white;
+}
+
+.viewticket{
+  text-decoration: none;
+  color: white;
+}
+.addData{
+  text-decoration: none;
+  color: white;
+
+}
+.delete{
+ text-decoration: none;
+}
+
+
+
+
+
+
+
+
