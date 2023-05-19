@@ -3,17 +3,31 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useParams, Link } from "react-router-dom";
 
 
-
-const Details = () => {
-    const { tid } = useParams();
-    const [tdata, setTdata] = useState({});
-    const formatDate = (dateString) => {
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+interface Ticket {
+    ticketid: number;
+    title: string;
+    description: string;
+    status: string;
+    priority: string;
+    created_on: string;
+}
+const Details:React.FC = ():JSX.Element => {
+    const { tid } = useParams<{ tid: any }>();
+    const [tdata, setTdata] = useState<Ticket>({
+        ticketid: 0,
+        title: '',
+        description: '',
+        status: '',
+        priority: '',
+        created_on: ''
+      });;
+    const formatDate = (dateString:string):string => {
+        const options:any = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString('en-US', options);
     };
 
-    const formatTime = (dateString) => {
-        const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+    const formatTime = (dateString:string) => {
+        const options:any = { hour: 'numeric', minute: 'numeric', hour12: true };
         return new Date(dateString).toLocaleTimeString('en-US', options);
     };
 
@@ -51,7 +65,7 @@ const Details = () => {
                                     <tbody>
                                         <tr>
                                             <td><b>Ticket Id:</b></td>
-                                            <td>{tdata.ticketid}</td>
+                                            {/* <td>{tdata.ticketid}</td> */}
                                         </tr>
                                         <tr>
                                             <td><b>Title:</b></td>

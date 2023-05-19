@@ -2,8 +2,17 @@ import { useState,useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSave, FaArrowLeft } from 'react-icons/fa';
 
+interface Ticket {
+    ticketid: number;
+    title: string;
+    description: string;
+    status: string;
+    priority: string;
+    created_on: Date;
+}
 
-const PostData = () => {
+
+const PostData:React.FC = ():JSX.Element => {
 
     const [title, titlechange] = useState("");
     const [description, descriptionchange] = useState("");
@@ -12,7 +21,7 @@ const PostData = () => {
     const[validation,valChange] =useState(false);
     const navigate = useNavigate()
 
-    const [statusList, setStatusList] = useState([]);
+    const [statusList, setStatusList] = useState<string[]>([]);
 
     useEffect(() => {
       fetch('http://localhost:3006/status')
@@ -20,7 +29,7 @@ const PostData = () => {
         .then(data => setStatusList(data));
         
     }, []);
-    const handleStatusChange = (e) => {
+    const handleStatusChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
         const selectedStatus = e.target.value;
       
         // Find the index of the current status and the selected status in the status list
@@ -40,7 +49,7 @@ const PostData = () => {
       
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const tdata = { title, description, status, priority }
         fetch('http://localhost:3006/tickets', {
@@ -61,7 +70,7 @@ const PostData = () => {
         })
     }
     
-    const [priorityList, setPriorityList] = useState({});
+    const [priorityList, setPriorityList] = useState<string[]>([]);
 
     useEffect(() => {
         fetch("http://localhost:3006/status")
@@ -139,7 +148,7 @@ const PostData = () => {
                     <br />
                     <select required name="priority" value={priority} onChange={(e)=> setPriority(e.target.value)} className="form-control">
                     <option>Select a priority</option>
-                    {priorityList.length > 0 && priorityList.map((priority) => (
+                    {priorityList.length > 0 && priorityList.map((priority:string) => (
                         (
                             (<option>{priority}</option>)
 
@@ -147,7 +156,7 @@ const PostData = () => {
                     ))}
                 </select>
                     <br />
-                    <button className="btn btn-success" type="submit" style={{ marginRight:'15px' }} onClick={handleSubmit}>
+                    <button className="btn btn-success" type="submit" style={{ marginRight:'15px' }}>
                 <FaSave />
                 </button>
                             

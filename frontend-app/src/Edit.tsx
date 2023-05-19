@@ -4,9 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaSave, FaArrowLeft } from 'react-icons/fa';
 
 
+interface Ticket {
+    ticketid: number;
+    title: string;
+    description: string;
+    status: string;
+    priority: string;
+    created_on: string;
+}
 
-
-const Edit = () => {
+const Edit:React.FC = ():JSX.Element => {
     const { tid } = useParams();
 
     const [ticketid, setTicketId] = useState("");
@@ -34,7 +41,7 @@ const Edit = () => {
             });
     }, [tid]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const tdata = {
             ticketid,
@@ -62,7 +69,7 @@ const Edit = () => {
             alert('Error: Data not saved. Please try again later.');
         })
     };
-    const [statusList, setStatusList] = useState([]);
+    const [statusList, setStatusList] = useState<string[]>([]);
 
     useEffect(() => {
       fetch('http://localhost:3006/status')
@@ -70,7 +77,7 @@ const Edit = () => {
         .then(data => setStatusList(data));
         
     }, []);
-    const handleStatusChange = (e) => {
+    const handleStatusChange = (e:React.ChangeEvent<HTMLSelectElement>) => {
         const selectedStatus = e.target.value;
       
         // Find the index of the current status and the selected status in the status list
@@ -88,7 +95,7 @@ const Edit = () => {
         }
       };
       
-    const [priorityList, setPriorityList] = useState({});
+    const [priorityList, setPriorityList] = useState<string[]>([]);
 
     useEffect(() => {
         fetch("http://localhost:3006/status")
@@ -160,7 +167,7 @@ const Edit = () => {
                                                 <br />
                                                 <select name="priority" value={priority} onChange={e => setPriority(e.target.value)} className="form-control">
                                                     <option>Select a priority</option>
-                                                    {priorityList.length > 0 && priorityList.map((priority) => (
+                                                    {priorityList.length > 0 && priorityList.map((priority:string) => (
                                                         (
                                                             (<option>{priority}</option>)
 
@@ -168,7 +175,7 @@ const Edit = () => {
                                                     ))}
                                                 </select>
                                                 <br />
-                                                <button className="btn btn-success" type="submit" style={{ marginRight: '15px' }} onClick={handleSubmit}>
+                                                <button className="btn btn-success" type="submit" style={{ marginRight: '15px' }}>
                                                     <FaSave />
                                                 </button>
 
